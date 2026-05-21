@@ -1,56 +1,239 @@
-# Welcome to your Expo app 👋
+# ⚡ FLUI — Charge Platform Challenge
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicativo mobile desenvolvido para o **Charge Platform Challenge**, com foco em experiência premium para motoristas de veículos elétricos, permitindo encontrar, filtrar e navegar até estações de recarga de forma rápida, intuitiva e moderna.
 
-## Get started
+---
 
-1. Install dependencies
+# 📱 Sobre o projeto
 
-   ```bash
-   npm install
-   ```
+A **FLUI** é uma plataforma de mobilidade elétrica inspirada em experiências modernas como Tesla, Rivian e aplicativos premium de mobilidade.
 
-2. Start the app
+O aplicativo oferece:
 
-   ```bash
-   npx expo start
-   ```
+- mapa interativo com estações de recarga;
+- filtros inteligentes;
+- informações detalhadas dos postos;
+- interface futurista e responsiva;
+- experiência visual premium;
+- navegação integrada com Google Maps.
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+# ✨ Funcionalidades
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🗺️ Mapa Interativo
 
-## Get a fresh project
+- Visualização de postos de recarga em tempo real (mockados)
+- Marcadores personalizados
+- Integração com Google Maps
+- Navegação até o posto via Google Maps
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
+## ⚡ Estações de Recarga
+
+Cada estação possui:
+
+- Nome
+- Distância
+- Avaliações
+- Tipo de carregador
+- Potência (kW)
+- Quantidade de carregadores
+- Disponibilidade
+- Horário de funcionamento
+- Comodidades
+- Carga rápida ou convencional
+
+---
+
+## 🔎 Sistema de Filtros
+
+Filtros acumulativos para:
+
+- Disponível agora
+- Estacionamento
+- Wi-Fi
+- Café
+- Banheiro
+- Carga rápida
+- Tipo de conector
+- Potência
+
+Os filtros funcionam de forma combinada.
+
+Exemplo:
+
+```txt
+Disponível agora + Estacionamento
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+retorna apenas postos que atendem ambas condições.
 
-### Other setup steps
+---
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+## 🚗 Navegação Inteligente
 
-## Learn more
+Ao clicar em:
 
-To learn more about developing your project with Expo, look at the following resources:
+```txt
+Iniciar trajeto agora
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+o aplicativo abre automaticamente o Google Maps com a rota até o posto selecionado.
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+## 📊 Aba de Atividades
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Histórico completo de:
+
+- recargas realizadas;
+- trajetos iniciados;
+- estações visitadas;
+- tempo médio de carregamento;
+- energia consumida.
+
+---
+
+## ⚙️ Aba "Mais"
+
+Sistema de navegação interna contendo:
+
+- Meu veículo
+- Favoritos
+- Pagamentos
+- Configurações
+- Suporte
+- Atividades
+
+---
+
+# 🎨 Design System
+
+## 🎨 Paleta principal
+
+| Cor | Hex |
+|---|---|
+| Roxo Neon | `#B748FB` |
+| Roxo Profundo | `#480B75` |
+| Preto | `#000000` |
+| Grafite | `#121212` |
+| Verde Neon | `#39FF14` |
+| Ouro | `#FFD700` |
+| Branco | `#FFFFFF` |
+
+---
+
+# 🚀 Tecnologias utilizadas
+
+## 📱 Mobile
+
+- React Native
+- Expo
+- Expo Router
+- TypeScript
+- React Native Maps
+- React Native Reanimated
+- Expo Linear Gradient
+
+---
+
+## 🎨 UI/UX
+
+- Design responsivo
+- Micro animações
+- Splash screen animada
+- Glow effects
+- Interface futurista
+- Dark UI premium
+
+---
+
+# 📂 Estrutura do Projeto
+
+```txt
+src/
+ ├── app/
+ │   ├── (tabs)
+ │   ├── activities
+ │   ├── more
+ │   └── vehicle
+ │
+ ├── components/
+ │   ├── splash/
+ │   ├── station/
+ │   ├── filters/
+ │   └── ui/
+ │
+ ├── constants/
+ │   └── colors.ts
+ │
+ ├── data/
+ │   └── stations.ts
+ │
+ ├── types/
+ │   └── station.ts
+ │
+ └── assets/
+     └── images/
+```
+
+---
+
+# ⚡ Splash Screen
+
+A aplicação possui uma splash screen cinematográfica animada contendo:
+
+- partículas de energia;
+- animações neon;
+- loading progress;
+- background futurista;
+- animações com Reanimated.
+
+---
+
+# 📍 Dados Mockados
+
+O app utiliza atualmente:
+
+- +30 postos espalhados pelo estado de São Paulo;
+- dados simulados;
+- filtros dinâmicos;
+- mock local.
+
+---
+
+# 🛣️ Roadmap Futuro
+
+- Integração com backend real
+- Autenticação
+- Favoritos persistentes
+- Pagamentos
+- Reserva de carregadores
+- Status em tempo real
+- IA para recomendação de postos
+- Sistema de avaliações
+- Apple Maps / Waze support
+
+---
+
+# 🧠 Conceito
+
+A FLUI foi idealizada para transformar a experiência de recarga elétrica em algo:
+
+```txt
+rápido
+inteligente
+visual
+fluido
+premium
+```
+
+mais próximo de uma experiência automotiva moderna do que apenas um aplicativo utilitário.
+
+---
+
+# 📄 Licença
+
+Projeto desenvolvido para fins educacionais e challenge técnico.
