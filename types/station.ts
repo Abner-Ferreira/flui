@@ -7,6 +7,7 @@ export type Station = {
   latitude: number
   longitude: number
   rating: number
+  reviewsCount: number
   distance: string
   time: string
   status: 'Disponível agora' | 'Ocupado'

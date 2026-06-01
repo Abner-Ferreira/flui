@@ -6,39 +6,34 @@ import { Pressable, Text, View } from 'react-native'
 
 const menuItems = [
   {
-    title: 'Meu veículo',
-    description: 'Cadastre modelo, autonomia e conectores',
-    icon: 'car-electric',
-    route: '/vehicle',
+    title: 'Atividades',
+    description: 'Veja recargas recentes e trajetos iniciados',
+    icon: 'history',
+    route: '/activities',
   },
-  // {
-  //   title: 'Atividades',
-  //   description: 'Veja recargas recentes e trajetos iniciados',
-  //   icon: 'history',
-  // },
   {
     title: 'Favoritos',
     description: 'Pontos de recarga salvos',
     icon: 'heart-outline',
-    route: '/vehicle',
+    route: '/favorites',
   },
   {
     title: 'Pagamentos',
     description: 'Gerencie cartões e métodos de pagamento',
     icon: 'credit-card-outline',
-    route: '/vehicle',
+    route: '/vehicles',
   },
   {
     title: 'Configurações',
     description: 'Preferências do aplicativo',
     icon: 'cog-outline',
-    route: '/vehicle',
+    route: '/vehicles',
   },
   {
     title: 'Ajuda e suporte',
     description: 'Dúvidas, atendimento e suporte',
     icon: 'help-circle-outline',
-    route: '/vehicle',
+    route: '/vehicles',
   },
 ]
 

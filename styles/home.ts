@@ -66,4 +66,24 @@ export const styles = StyleSheet.create({
     color: COLORS.white,
     fontSize: 15,
   },
+  feedbackBox: {
+  position: 'absolute',
+  top: 180,
+  alignSelf: 'center',
+  backgroundColor: COLORS.graphite,
+  borderWidth: 1,
+  borderColor: COLORS.purpleNeon,
+  borderRadius: 12,
+  paddingHorizontal: 16,
+  paddingVertical: 12,
+  flexDirection: 'row',
+  alignItems: 'center',
+  gap: 10,
+},
+
+feedbackText: {
+  color: COLORS.white,
+  fontSize: 13,
+  fontWeight: '600',
+},
 })

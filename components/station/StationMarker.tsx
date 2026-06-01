@@ -1,7 +1,7 @@
 import { COLORS } from '@/constants/colors'
+import { styles } from '@/styles/stationMarker'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { View } from 'react-native'
-import { styles } from './stationMarker'
 
 
 

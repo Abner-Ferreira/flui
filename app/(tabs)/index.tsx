@@ -2,18 +2,20 @@ import { FilterChips } from '@/components/filter/FilterChips'
 import { StationBottomSheet } from '@/components/station/StationBottomSheet'
 import { StationMarker } from '@/components/station/StationMarker'
 import { COLORS } from '@/constants/colors'
-import { stations } from '@/data/stations'
-import { darkMapStyle, styles } from '@/styles'
+import { useStations } from '@/hooks/useStations'
+import { darkMapStyle, styles } from '@/styles/home'
 import { Station } from '@/types/station'
 import { Feather } from '@expo/vector-icons'
 import { useMemo, useState } from 'react'
-import { TextInput, View } from 'react-native'
+import { ActivityIndicator, Text, TextInput, View } from 'react-native'
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 
 export default function ChargingMapScreen() {
   const [selectedStation, setSelectedStation] = useState<Station | null>(null)
   const [selectedFilters, setSelectedFilters] = useState<string[]>([])
   const [search, setSearch] = useState('')
+
+  const { stations, loading, error } = useStations()
 
   function toggleFilter(filter: string) {
     setSelectedFilters(prev =>
@@ -71,7 +73,7 @@ export default function ChargingMapScreen() {
         return true
       })
     })
-  }, [search, selectedFilters])
+  }, [search, selectedFilters, stations])
 
   return (
     <View style={styles.container}>
@@ -106,9 +108,10 @@ export default function ChargingMapScreen() {
 
       <View style={styles.topContent}>
         <View style={styles.searchBox}>
-          <Feather name='search' size={22} color={COLORS.white} />
+          <Feather name="search" size={22} color={COLORS.white} />
+
           <TextInput
-            placeholder='Buscar por nome ou região'
+            placeholder="Buscar por nome ou região"
             placeholderTextColor={COLORS.white}
             style={styles.searchInput}
             value={search}
@@ -119,8 +122,26 @@ export default function ChargingMapScreen() {
         <FilterChips selected={selectedFilters} onToggle={toggleFilter} />
       </View>
 
+      {loading && (
+        <View style={styles.feedbackBox}>
+          <ActivityIndicator color={COLORS.greenNeon} />
+          <Text style={styles.feedbackText}>Carregando postos...</Text>
+        </View>
+      )}
+
+      {!loading && error && (
+        <View style={styles.feedbackBox}>
+          <Text style={styles.feedbackText}>{error}</Text>
+        </View>
+      )}
+
+      {!loading && !error && filteredStations.length === 0 && (
+        <View style={styles.feedbackBox}>
+          <Text style={styles.feedbackText}>Nenhum posto encontrado</Text>
+        </View>
+      )}
+
       <StationBottomSheet station={selectedStation} />
     </View>
   )
 }
-
