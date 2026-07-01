@@ -21,19 +21,19 @@ const menuItems = [
     title: 'Pagamentos',
     description: 'Gerencie cartões e métodos de pagamento',
     icon: 'credit-card-outline',
-    route: '/vehicles',
+    route: '/payments',
   },
   {
     title: 'Configurações',
     description: 'Preferências do aplicativo',
     icon: 'cog-outline',
-    route: '/vehicles',
+    route: '/settings',
   },
   {
     title: 'Ajuda e suporte',
     description: 'Dúvidas, atendimento e suporte',
     icon: 'help-circle-outline',
-    route: '/vehicles',
+    route: '/help',
   },
 ]
 

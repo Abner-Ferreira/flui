@@ -1,4 +1,5 @@
 import { COLORS } from '@/constants/colors'
+import { createActivity } from '@/services/activities'
 import {
   Vehicle,
   createVehicle,
@@ -19,7 +20,7 @@ import {
   ScrollView,
   Text,
   TextInput,
-  View
+  View,
 } from 'react-native'
 
 type VehicleCategory = 'Elétrico' | 'Híbrido'
@@ -87,8 +88,18 @@ export default function VehiclesScreen() {
 
       if (editingVehicle) {
         await updateVehicle(editingVehicle.id, payload)
+        await createActivity({
+          type: 'edit',
+          title: 'Veículo atualizado',
+          description: `${model} foi atualizado.`,
+        })
       } else {
         await createVehicle(payload)
+        await createActivity({
+          type: 'create',
+          title: 'Veículo adicionado',
+          description: `${model} foi adicionado à sua garagem.`,
+        })
       }
 
       setModalVisible(false)
@@ -107,6 +118,11 @@ export default function VehiclesScreen() {
         onPress: async () => {
           try {
             await deleteVehicle(vehicle.id)
+            await createActivity({
+              type: 'delete',
+              title: 'Veículo removido',
+              description: `${vehicle.model} foi removido da garagem.`,
+            })
             await loadVehicles()
           } catch {
             Alert.alert('Erro', 'Não foi possível remover o veículo.')
@@ -289,5 +305,3 @@ function SelectRow({
     </View>
   )
 }
-
-

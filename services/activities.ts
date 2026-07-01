@@ -5,7 +5,7 @@ const API_URL = process.env.EXPO_PUBLIC_API_URL
 export type Activity = {
   id: string
   station_id: string | null
-  type: 'route' | 'charge' | 'favorite' | 'review'
+  type: 'route' | 'charge' | 'favorite' | 'review' | 'create' | 'edit' | 'delete'
   title: string
   description: string | null
 }

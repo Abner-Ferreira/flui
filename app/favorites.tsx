@@ -1,6 +1,6 @@
 import { COLORS } from '@/constants/colors'
 import { useStations } from '@/hooks/useStations'
-import { styles } from '@/services/favorites'
+import { styles } from '@/styles/favorites'
 import { getFavorites } from '@/services/station-actions'
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
 import { router, useFocusEffect } from 'expo-router'

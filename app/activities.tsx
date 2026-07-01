@@ -36,6 +36,9 @@ export default function ActivitiesScreen() {
     if (type === 'route') return 'navigation'
     if (type === 'charge') return 'zap'
     if (type === 'favorite') return 'heart'
+    if (type === 'edit') return 'edit'
+    if (type === 'create') return 'plus-square'
+    if (type === 'delete') return 'minus-square'
     return 'star'
   }
 

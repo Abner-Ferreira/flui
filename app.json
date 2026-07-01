@@ -37,7 +37,13 @@
     },
     "plugins": [
       "expo-router",
-      "expo-secure-store"
+      "expo-secure-store",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Permita que o Flui utilize sua localização para encontrar estações próximas."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

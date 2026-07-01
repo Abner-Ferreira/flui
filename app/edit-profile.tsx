@@ -1,9 +1,6 @@
 import { COLORS } from '@/constants/colors'
-import {
-  getLoggedUser,
-  updateLoggedUser,
-  User,
-} from '@/services/auth'
+import { createActivity } from '@/services/activities'
+import { getLoggedUser, updateLoggedUser, User } from '@/services/auth'
 import { styles } from '@/services/edit-profile'
 import { Feather } from '@expo/vector-icons'
 import { router } from 'expo-router'
@@ -14,7 +11,7 @@ import {
   Pressable,
   Text,
   TextInput,
-  View
+  View,
 } from 'react-native'
 
 export default function EditProfileScreen() {
@@ -63,6 +60,12 @@ export default function EditProfileScreen() {
         phone,
       })
 
+      await createActivity({
+        type: 'edit',
+        title: 'Perfil atualizado',
+        description: `Seus dados pessoais foram atualizados.`,
+      })
+
       Alert.alert('Perfil atualizado', 'Seus dados foram salvos com sucesso.')
 
       router.back()
@@ -89,7 +92,7 @@ export default function EditProfileScreen() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Pressable style={styles.backButton} onPress={() => router.back()}>
-          <Feather name="chevron-left" size={26} color={COLORS.white} />
+          <Feather name='chevron-left' size={26} color={COLORS.white} />
         </Pressable>
 
         <View>
@@ -100,7 +103,7 @@ export default function EditProfileScreen() {
 
       <View style={styles.card}>
         <View style={styles.avatar}>
-          <Feather name="user" size={42} color={COLORS.white} />
+          <Feather name='user' size={42} color={COLORS.white} />
         </View>
 
         <Text style={styles.userName}>{user?.name || 'Motorista FLUI'}</Text>
@@ -112,11 +115,11 @@ export default function EditProfileScreen() {
           <Text style={styles.label}>Nome completo</Text>
 
           <View style={styles.inputBox}>
-            <Feather name="user" size={20} color={COLORS.purpleNeon} />
+            <Feather name='user' size={20} color={COLORS.purpleNeon} />
 
             <TextInput
-              placeholder="Digite seu nome"
-              placeholderTextColor="rgba(255,255,255,0.45)"
+              placeholder='Digite seu nome'
+              placeholderTextColor='rgba(255,255,255,0.45)'
               style={styles.input}
               value={name}
               onChangeText={setName}
@@ -128,16 +131,16 @@ export default function EditProfileScreen() {
           <Text style={styles.label}>E-mail</Text>
 
           <View style={styles.inputBox}>
-            <Feather name="mail" size={20} color={COLORS.purpleNeon} />
+            <Feather name='mail' size={20} color={COLORS.purpleNeon} />
 
             <TextInput
-              placeholder="Digite seu e-mail"
-              placeholderTextColor="rgba(255,255,255,0.45)"
+              placeholder='Digite seu e-mail'
+              placeholderTextColor='rgba(255,255,255,0.45)'
               style={styles.input}
               value={email}
               onChangeText={setEmail}
-              autoCapitalize="none"
-              keyboardType="email-address"
+              autoCapitalize='none'
+              keyboardType='email-address'
             />
           </View>
         </View>
@@ -146,15 +149,15 @@ export default function EditProfileScreen() {
           <Text style={styles.label}>Telefone</Text>
 
           <View style={styles.inputBox}>
-            <Feather name="phone" size={20} color={COLORS.purpleNeon} />
+            <Feather name='phone' size={20} color={COLORS.purpleNeon} />
 
             <TextInput
-              placeholder="(11) 99999-9999"
-              placeholderTextColor="rgba(255,255,255,0.45)"
+              placeholder='(11) 99999-9999'
+              placeholderTextColor='rgba(255,255,255,0.45)'
               style={styles.input}
               value={phone}
               onChangeText={setPhone}
-              keyboardType="phone-pad"
+              keyboardType='phone-pad'
             />
           </View>
         </View>
@@ -180,4 +183,3 @@ export default function EditProfileScreen() {
     </View>
   )
 }
-
