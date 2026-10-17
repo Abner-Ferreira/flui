@@ -1,30 +1,26 @@
-// Linha 1
 import { FilterChips } from '@/components/filter/FilterChips'
+import { StationMap } from '@/components/map/StationMap'
+import type { Coordinates, MapFocus } from '@/components/map/types'
 import { StationBottomSheet } from '@/components/station/StationBottomSheet'
-import { StationMarker } from '@/components/station/StationMarker'
 import { COLORS } from '@/constants/colors'
 import { useStations } from '@/hooks/useStations'
-import { darkMapStyle, styles } from '@/styles/home'
+import { styles } from '@/styles/home'
 import { Station } from '@/types/station'
-import { Feather } from '@expo/vector-icons'
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
 import * as Location from 'expo-location'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   ActivityIndicator,
+  Pressable,
   Text,
   TextInput,
   View,
 } from 'react-native'
-import MapView, {
-  Marker,
-  PROVIDER_GOOGLE,
-  Region,
-} from 'react-native-maps'
 
-// Linha 24
+// Altura da tab bar (88) + folga: mantém zoom/atribuição do mapa visíveis
+const MAP_BOTTOM_INSET = 96
+
 export default function ChargingMapScreen() {
-  const mapRef = useRef<MapView>(null)
-
   const [selectedStation, setSelectedStation] =
     useState<Station | null>(null)
 
@@ -33,38 +29,42 @@ export default function ChargingMapScreen() {
 
   const [search, setSearch] = useState('')
 
+  const [userLocation, setUserLocation] =
+    useState<Coordinates | null>(null)
+
+  const [focus, setFocus] = useState<MapFocus | null>(null)
+
   const { stations, loading, error } = useStations()
 
-  useEffect(() => {
-    async function loadLocation() {
-      try {
-        const { status } =
-          await Location.requestForegroundPermissionsAsync()
+  const locateUser = useCallback(async () => {
+    try {
+      const { status } =
+        await Location.requestForegroundPermissionsAsync()
 
-        if (status !== 'granted') {
-          return
-        }
-
-        const location =
-          await Location.getCurrentPositionAsync({
-            accuracy: Location.Accuracy.High,
-          })
-
-        const region: Region = {
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude,
-          latitudeDelta: 0.04,
-          longitudeDelta: 0.04,
-        }
-
-        mapRef.current?.animateToRegion(region, 1200)
-      } catch (error) {
-        console.log(error)
+      if (status !== 'granted') {
+        return
       }
-    }
 
-    loadLocation()
+      const location =
+        await Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.High,
+        })
+
+      const coords: Coordinates = {
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      }
+
+      setUserLocation(coords)
+      setFocus({ ...coords, nonce: Date.now() })
+    } catch (error) {
+      console.log(error)
+    }
   }, [])
+
+  useEffect(() => {
+    locateUser()
+  }, [locateUser])
 
   function toggleFilter(filter: string) {
     setSelectedFilters(prev =>
@@ -147,37 +147,14 @@ export default function ChargingMapScreen() {
 
   return (
     <View style={styles.container}>
-      <MapView
-        ref={mapRef}
-        provider={PROVIDER_GOOGLE}
-        style={styles.map}
-        initialRegion={{
-          latitude: -23.55052,
-          longitude: -46.633308,
-          latitudeDelta: 0.04,
-          longitudeDelta: 0.04,
-        }}
-        showsUserLocation
-        showsMyLocationButton
-        customMapStyle={darkMapStyle}
-        onPress={() => setSelectedStation(null)}
-      >
-        {filteredStations.map(station => (
-          <Marker
-            key={station.id}
-            coordinate={{
-              latitude: station.latitude,
-              longitude: station.longitude,
-            }}
-            onPress={event => {
-              event.stopPropagation()
-              setSelectedStation(station)
-            }}
-          >
-            <StationMarker />
-          </Marker>
-        ))}
-      </MapView>
+      <StationMap
+        stations={filteredStations}
+        selectedId={selectedStation?.id ?? null}
+        userLocation={userLocation}
+        focus={focus}
+        onSelectStation={setSelectedStation}
+        bottomInset={MAP_BOTTOM_INSET}
+      />
 
       <View style={styles.topContent}>
         <View style={styles.searchBox}>
@@ -231,6 +208,21 @@ export default function ChargingMapScreen() {
             </Text>
           </View>
         )}
+
+      {!selectedStation && (
+        <Pressable
+          style={styles.locateButton}
+          onPress={locateUser}
+          accessibilityRole="button"
+          accessibilityLabel="Ir para a minha localização"
+        >
+          <MaterialCommunityIcons
+            name="crosshairs-gps"
+            size={24}
+            color={COLORS.greenNeon}
+          />
+        </Pressable>
+      )}
 
       <StationBottomSheet
         station={selectedStation}

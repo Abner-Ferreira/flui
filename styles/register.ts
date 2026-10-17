@@ -1,22 +1,31 @@
-import { COLORS } from "@/constants/colors";
-import { StyleSheet } from "react-native";
+import { COLORS } from '@/constants/colors'
+import { Platform, StyleSheet } from 'react-native'
+
+const isWeb = Platform.OS === 'web'
 
 export const styles = StyleSheet.create({
   background: {
     flex: 1,
+    width: '100%',
+    minHeight: isWeb ? 800 : undefined,
     backgroundColor: COLORS.black,
   },
 
   container: {
     flex: 1,
+    width: '100%',
   },
 
   content: {
-    flex: 1,
+    flexGrow: 1,
+    width: '100%',
+    maxWidth: isWeb ? 520 : undefined,
+    alignSelf: 'center',
     paddingHorizontal: 28,
-    paddingTop: 52,
-    paddingBottom: 28,
+    paddingTop: isWeb ? 32 : 52,
+    paddingBottom: 32,
     justifyContent: 'space-between',
+    gap: 28,
   },
 
   brandArea: {
@@ -52,7 +61,7 @@ export const styles = StyleSheet.create({
 
   heroText: {
     alignItems: 'center',
-    marginTop: -4,
+    marginTop: 0,
   },
 
   title: {
@@ -73,10 +82,12 @@ export const styles = StyleSheet.create({
 
   form: {
     gap: 12,
+    width: '100%',
   },
 
   fieldGroup: {
     gap: 7,
+    width: '100%',
   },
 
   label: {
@@ -99,6 +110,7 @@ export const styles = StyleSheet.create({
 
   input: {
     flex: 1,
+    minWidth: 0,
     color: COLORS.white,
     fontSize: 15,
   },
@@ -142,6 +154,7 @@ export const styles = StyleSheet.create({
   footerText: {
     color: 'rgba(255,255,255,0.68)',
     fontSize: 15,
+    textAlign: 'center',
   },
 
   footerStrong: {

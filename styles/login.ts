@@ -1,9 +1,12 @@
-import { COLORS } from "@/constants/colors";
-import { StyleSheet } from "react-native";
+import { COLORS } from '@/constants/colors'
+import { Platform, StyleSheet } from 'react-native'
+
+const isWeb = Platform.OS === 'web'
 
 export const styles = StyleSheet.create({
   background: {
     flex: 1,
+    width: '100%',
     backgroundColor: COLORS.black,
   },
 
@@ -11,13 +14,17 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
 
-  content: {
-    flex: 1,
-    paddingHorizontal: 28,
-    paddingTop: 68,
-    paddingBottom: 32,
-    justifyContent: 'space-between',
-  },
+content: {
+  flexGrow: 1,
+  width: '100%',
+  maxWidth: isWeb ? 520 : undefined,
+  alignSelf: 'center',
+  paddingHorizontal: 28,
+  paddingTop: isWeb ? 36 : 68,
+  paddingBottom: 32,
+  justifyContent: 'space-between',
+  gap: 28,
+},
 
   brandArea: {
     alignItems: 'center',
@@ -34,12 +41,8 @@ export const styles = StyleSheet.create({
     fontSize: 56,
     fontWeight: '900',
     letterSpacing: 10,
-
     textShadowColor: COLORS.purpleNeon,
-    textShadowOffset: {
-      width: 0,
-      height: 0,
-    },
+    textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 18,
   },
 
@@ -53,7 +56,7 @@ export const styles = StyleSheet.create({
 
   heroText: {
     alignItems: 'center',
-    marginTop: -10,
+    marginTop: isWeb ? 24 : -10,
   },
 
   title: {
@@ -74,6 +77,7 @@ export const styles = StyleSheet.create({
 
   form: {
     gap: 16,
+    width: '100%',
   },
 
   fieldGroup: {
@@ -92,9 +96,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(183,72,251,0.45)',
     backgroundColor: 'rgba(14,14,14,0.84)',
-
     paddingHorizontal: 16,
-
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
@@ -104,6 +106,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     color: COLORS.white,
     fontSize: 15,
+    minWidth: 0,
   },
 
   forgotButton: {
@@ -121,17 +124,11 @@ export const styles = StyleSheet.create({
     height: 58,
     borderRadius: 18,
     overflow: 'hidden',
-
     marginTop: 10,
-
     shadowColor: COLORS.purpleNeon,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
+    shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.45,
     shadowRadius: 18,
-
     elevation: 16,
   },
 
@@ -159,6 +156,7 @@ export const styles = StyleSheet.create({
   footerText: {
     color: 'rgba(255,255,255,0.68)',
     fontSize: 15,
+    textAlign: 'center',
   },
 
   footerStrong: {

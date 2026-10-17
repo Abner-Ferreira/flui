@@ -7,12 +7,12 @@ import { router } from 'expo-router'
 import { useEffect, useState } from 'react'
 import {
   ActivityIndicator,
-  Alert,
   Pressable,
   Text,
   TextInput,
   View,
 } from 'react-native'
+import { Alert } from '@/lib/alert'
 
 export default function EditProfileScreen() {
   const [user, setUser] = useState<User | null>(null)

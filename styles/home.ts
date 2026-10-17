@@ -1,47 +1,28 @@
 import { COLORS } from "@/constants/colors"
 import { StyleSheet } from "react-native"
 
-export const darkMapStyle = [
-  {
-    elementType: 'geometry',
-    stylers: [{ color: COLORS.black }],
-  },
-  {
-    elementType: 'labels.text.fill',
-    stylers: [{ color: COLORS.purpleNeon }],
-  },
-  {
-    elementType: 'labels.text.stroke',
-    stylers: [{ color: COLORS.black }],
-  },
-  {
-    featureType: 'road',
-    elementType: 'geometry',
-    stylers: [{ color: COLORS.purpleDeep }],
-  },
-  {
-    featureType: 'road',
-    elementType: 'geometry.stroke',
-    stylers: [{ color: COLORS.purpleNeon }],
-  },
-  {
-    featureType: 'water',
-    elementType: 'geometry',
-    stylers: [{ color: COLORS.graphite }],
-  },
-  {
-    featureType: 'poi',
-    stylers: [{ visibility: 'off' }],
-  },
-]
-
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.black,
   },
-  map: {
-    ...StyleSheet.absoluteFillObject,
+  locateButton: {
+    position: 'absolute',
+    right: 20,
+    bottom: 112,
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: COLORS.graphite,
+    borderWidth: 1.5,
+    borderColor: COLORS.greenNeon,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: COLORS.greenNeon,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.6,
+    shadowRadius: 12,
+    elevation: 8,
   },
   topContent: {
     position: 'absolute',

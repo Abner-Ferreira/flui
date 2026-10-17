@@ -16,7 +16,6 @@ import {
 import { useEffect, useMemo, useState } from 'react'
 import {
   ActionSheetIOS,
-  Alert,
   Linking,
   Modal,
   Platform,
@@ -26,6 +25,7 @@ import {
   TextInput,
   View,
 } from 'react-native'
+import { Alert } from '@/lib/alert'
 
 type Props = {
   station: Station | null
@@ -107,6 +107,12 @@ async function openNavigationOptions(station: Station) {
     }
 
     await Linking.openURL(url)
+  }
+
+  if (Platform.OS === 'web') {
+    // No navegador não há ActionSheet nem Alert com vários botões: abre o Google Maps direto
+    openUrl(googleMapsUrl)
+    return
   }
 
   if (Platform.OS === 'ios') {

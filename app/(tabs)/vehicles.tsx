@@ -14,7 +14,6 @@ import { useFocusEffect } from 'expo-router'
 import { useCallback, useState } from 'react'
 import {
   ActivityIndicator,
-  Alert,
   Modal,
   Pressable,
   ScrollView,
@@ -22,6 +21,7 @@ import {
   TextInput,
   View,
 } from 'react-native'
+import { Alert } from '@/lib/alert'
 
 type VehicleCategory = 'Elétrico' | 'Híbrido'
 type ChargerType = 'Carga rápida' | 'Carga normal' | 'Ambos'

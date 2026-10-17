@@ -3,16 +3,16 @@ import { getVehicles, Vehicle } from '@/services/vehicles'
 import { styles } from '@/styles/profile'
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
 import { router, useFocusEffect } from 'expo-router'
-import * as SecureStore from 'expo-secure-store'
+import * as storage from '@/services/storage'
 import { useCallback, useState } from 'react'
 import {
   ActivityIndicator,
-  Alert,
   Pressable,
   ScrollView,
   Text,
-  View
+  View,
 } from 'react-native'
+import { Alert } from '@/lib/alert'
 
 type User = {
   id: string
@@ -31,7 +31,7 @@ export default function ProfileScreen() {
     try {
       setLoading(true)
 
-      const storedUser = await SecureStore.getItemAsync('flui_user')
+      const storedUser = await storage.getItemAsync('flui_user')
       const vehiclesData = await getVehicles()
 
       if (storedUser) {
@@ -62,8 +62,8 @@ export default function ProfileScreen() {
         text: 'Sair',
         style: 'destructive',
         onPress: async () => {
-          await SecureStore.deleteItemAsync('flui_token')
-          await SecureStore.deleteItemAsync('flui_user')
+          await storage.deleteItemAsync('flui_token')
+          await storage.deleteItemAsync('flui_user')
 
           router.replace('/login')
         },

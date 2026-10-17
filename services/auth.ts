@@ -1,4 +1,4 @@
-import * as SecureStore from 'expo-secure-store'
+import * as storage from '@/services/storage'
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL
 
@@ -34,7 +34,7 @@ async function parseResponse(response: Response) {
 }
 
 async function getAuthHeaders() {
-  const token = await SecureStore.getItemAsync('flui_token')
+  const token = await storage.getItemAsync('flui_token')
 
   return {
     'Content-Type': 'application/json',
@@ -62,8 +62,8 @@ export async function registerUser(data: {
     throw new Error(result.detail || 'Erro ao criar conta')
   }
 
-  await SecureStore.setItemAsync('flui_token', result.token)
-  await SecureStore.setItemAsync('flui_user', JSON.stringify(result.user))
+  await storage.setItemAsync('flui_token', result.token)
+  await storage.setItemAsync('flui_user', JSON.stringify(result.user))
 
   return result as AuthResponse
 }
@@ -86,14 +86,14 @@ export async function loginUser(data: {
     throw new Error(result.detail || 'Erro ao fazer login')
   }
 
-  await SecureStore.setItemAsync('flui_token', result.token)
-  await SecureStore.setItemAsync('flui_user', JSON.stringify(result.user))
+  await storage.setItemAsync('flui_token', result.token)
+  await storage.setItemAsync('flui_user', JSON.stringify(result.user))
 
   return result as AuthResponse
 }
 
 export async function getLoggedUser() {
-  const storedUser = await SecureStore.getItemAsync('flui_user')
+  const storedUser = await storage.getItemAsync('flui_user')
 
   if (!storedUser) {
     return null
@@ -115,12 +115,12 @@ export async function updateLoggedUser(data: UpdateUserData) {
     throw new Error(result.detail || 'Erro ao atualizar perfil')
   }
 
-  await SecureStore.setItemAsync('flui_user', JSON.stringify(result))
+  await storage.setItemAsync('flui_user', JSON.stringify(result))
 
   return result as User
 }
 
 export async function logoutUser() {
-  await SecureStore.deleteItemAsync('flui_token')
-  await SecureStore.deleteItemAsync('flui_user')
+  await storage.deleteItemAsync('flui_token')
+  await storage.deleteItemAsync('flui_user')
 }

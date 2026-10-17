@@ -5,12 +5,12 @@ import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
 import { CameraView, useCameraPermissions } from 'expo-camera'
 import { useState } from 'react'
 import {
-  Alert,
   Pressable,
   Text,
   TextInput,
-  View
+  View,
 } from 'react-native'
+import { Alert } from '@/lib/alert'
 
 export default function ChargeScreen() {
   const [permission, requestPermission] = useCameraPermissions()

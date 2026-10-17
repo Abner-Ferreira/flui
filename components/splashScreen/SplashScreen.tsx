@@ -139,7 +139,7 @@ function LoadingBar({ onComplete }: { onComplete: () => void }) {
             colors={[COLORS.purpleDeep, COLORS.purpleNeon, COLORS.greenNeon]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
-            style={StyleSheet.absoluteFillObject}
+            style={StyleSheet.absoluteFill}
           />
 
           <Animated.View style={[loadingStyles.tipGlow, glowStyle]} />
@@ -244,7 +244,7 @@ export function SplashScreen({ onFinish }: Props) {
               'rgba(0,0,0,0.72)',
             ]}
             locations={[0, 0.45, 1]}
-            style={StyleSheet.absoluteFillObject}
+            style={StyleSheet.absoluteFill}
           />
 
           <EnergyParticle

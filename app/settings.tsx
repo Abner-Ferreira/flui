@@ -8,13 +8,13 @@ import {
 import { router } from 'expo-router'
 import { useState } from 'react'
 import {
-  Alert,
   Pressable,
   ScrollView,
   Switch,
   Text,
   View,
 } from 'react-native'
+import { Alert } from '@/lib/alert'
 
 function SettingItem({
   icon,

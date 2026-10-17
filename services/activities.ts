@@ -1,4 +1,4 @@
-import * as SecureStore from 'expo-secure-store'
+import * as storage from '@/services/storage'
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL
 
@@ -11,7 +11,7 @@ export type Activity = {
 }
 
 async function getAuthHeaders() {
-  const token = await SecureStore.getItemAsync('flui_token')
+  const token = await storage.getItemAsync('flui_token')
 
   return {
     'Content-Type': 'application/json',

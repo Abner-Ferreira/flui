@@ -6,12 +6,12 @@ import {
 } from '@expo/vector-icons'
 import { router } from 'expo-router'
 import {
-  Alert,
   Pressable,
   ScrollView,
   Text,
   View,
 } from 'react-native'
+import { Alert } from '@/lib/alert'
 
 const payments = [
   {
