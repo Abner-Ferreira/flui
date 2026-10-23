@@ -6,6 +6,12 @@ import { Pressable, Text, View } from 'react-native'
 
 const menuItems = [
   {
+    title: 'Perfil',
+    description: 'Altere e personalize suas informações pessoais',
+    icon: 'account-circle-outline',
+    route: '/profile',
+  },
+  {
     title: 'Atividades',
     description: 'Veja recargas recentes e trajetos iniciados',
     icon: 'history',

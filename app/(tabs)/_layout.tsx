@@ -21,9 +21,13 @@ const TAB_ITEMS: Record<string, { title: string; icon: any; isCenter?: boolean }
     title: 'Carregar',
     icon: 'ev-station',
   },
-  profile: {
-    title: 'Perfil',
-    icon: 'account-circle-outline',
+  // profile: {
+  //   title: 'Perfil',
+  //   icon: 'account-circle-outline',
+  // },
+  fluiai: {
+    title: 'Chatbot',
+    icon: 'chat',
   },
 }
 
@@ -82,7 +86,8 @@ export default function TabLayout() {
       <Tabs.Screen name="vehicles" />
       <Tabs.Screen name="more" />
       <Tabs.Screen name="charging" />
-      <Tabs.Screen name="profile" />
+      {/* <Tabs.Screen name="profile" /> */}
+      <Tabs.Screen name="fluiai" />
     </Tabs>
   )
 }

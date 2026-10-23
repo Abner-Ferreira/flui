@@ -2,11 +2,42 @@ import { COLORS } from "@/constants/colors";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  container: {
+   container: {
     flex: 1,
     backgroundColor: COLORS.black,
+    paddingTop: 62,
+    paddingHorizontal: 22,
+  },
+header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+    marginBottom: 24,
   },
 
+  backButton: {
+    width: 46,
+    height: 46,
+    borderRadius: 16,
+    backgroundColor: COLORS.graphite,
+    borderWidth: 1,
+    borderColor: 'rgba(183,72,251,0.25)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+   title: {
+    color: COLORS.white,
+    fontSize: 34,
+    fontWeight: '900',
+  },
+
+  subtitle: {
+    color: 'rgba(255,255,255,0.65)',
+    marginTop: 6,
+  },
+  profileScroll: {
+  flex: 1,
+},
   content: {
     paddingTop: 62,
     paddingHorizontal: 22,
